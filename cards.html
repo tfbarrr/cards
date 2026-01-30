@@ -1,1 +1,129 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Barafrns | Personal Dashboard</title>
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;500;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="./style.css">
+</head>
+<body>
+    <div class="cursor-dot" data-cursor-dot></div>
+    <div class="cursor-outline" data-cursor-outline></div>
 
+    <nav id="navbar">
+        <div class="nav-container">
+            <a href="index.html" class="logo">
+                <span class="logo-symbol">&lt;/&gt;</span> barafrns
+            </a>
+            
+            <div class="nav-right">
+                <ul id="nav-links">
+                    <li><a href="index.html" class="nav-link active">Personal</a></li>
+                    <li><a href="#biodata" class="nav-link">Biodata</a></li>
+                    <li><a href="projects.html" class="nav-link">Source Code</a></li> </ul>
+                
+                <button id="theme-toggle" aria-label="Toggle Theme">
+                    <i class="fas fa-moon"></i>
+                </button>
+            </div>
+        </div>
+    </nav>
+
+    <main>
+        <section class="hero-section">
+            <div class="bento-grid">
+                <div class="bento-item intro-card" data-aos="fade-up">
+                    <div class="status-badge">
+                        <span class="pulse-dot"></span> Online
+                    </div>
+                    <h1>Developer &<br>Community Builder.</h1>
+                    <p>Spesialisasi dalam Discord Bot Development dan Web Apps, dan Server Minecraft.</p>
+                </div>
+
+                <div class="bento-item photo-card" data-aos="zoom-in" data-aos-delay="100">
+                    <img src="https://raw.githubusercontent.com/tfbarrr/tfbarrr.github.io/main/profile.jpg" alt="Profile" class="profile-img">
+                    <div class="overlay-info">
+                        <h3>Barafrns</h3>
+                        <p>@cyizzie</p>
+                    </div>
+                </div>
+
+                <div class="bento-item social-card" data-aos="fade-left" data-aos-delay="200">
+                    <div class="social-links">
+                        <a href="https://discord.gg/KVG5Vw66" target="_blank" class="social-btn"><i class="fab fa-discord"></i></a>
+                        <a href="https://github.com/tfbarrr" target="_blank" class="social-btn"><i class="fab fa-github"></i></a>
+                    </div>
+                    <div class="stat-box">
+                        <span class="number">1+</span>
+                        <span class="label">Years Exp</span>
+                    </div>
+                </div>
+
+                <div class="bento-item map-card" data-aos="fade-up" data-aos-delay="300">
+                    <div class="map-content">
+                        <i class="fas fa-map-marker-alt"></i> 
+                        Bekasi, ID 
+                        <span id="local-time" style="font-weight:bold; margin-left:10px; color:var(--accent-color)">--:--</span>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="biodata" class="section">
+            <h2 class="section-title" data-aos="fade-right">Personal Data</h2>
+            
+            <div class="biodata-grid">
+                <div class="bio-item" data-aos="fade-up" data-aos-delay="100">
+                    <i class="fas fa-user-astronaut bio-icon"></i>
+                    <div class="bio-label">Age / Status</div>
+                    <div class="bio-value">16 Years Old</div>
+                    <p style="color: var(--text-secondary); margin-top: 0.5rem; font-size: 0.9rem;">Nocturnal Developer</p>
+                </div>
+
+                <div class="bio-item" data-aos="fade-up" data-aos-delay="200" style="grid-column: span 2;"> <div style="display:flex; align-items:center; gap:10px;">
+                        <i class="fas fa-graduation-cap bio-icon" style="margin-bottom:0"></i>
+                        <span class="bio-label" style="margin-bottom:0">Education Path</span>
+                    </div>
+                    
+                    <div class="education-timeline">
+                        <div class="edu-item">
+                            <div class="edu-year">2025 - Present</div>
+                            <div class="edu-degree">Teknik Komputer & Jaringan</div>
+                            <div class="edu-school">SMK Sumber Daya, Bekasi</div>
+                        </div>
+                        <div class="edu-item">
+                            <div class="edu-year">When ya - ???</div>
+                            <div class="edu-degree">Teknik Informatika</div>
+                            <div class="edu-school">Stanford University, California</div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="bio-item" data-aos="fade-up" data-aos-delay="300">
+                    <i class="fas fa-envelope-open-text bio-icon"></i>
+                    <div class="bio-label">Contact</div>
+                    <div class="bio-value" style="font-size: 1.1rem; word-break: break-all;">fartoofarr@gmail.com</div>
+                    
+                    <div style="margin-top: 1.5rem; display: flex; gap: 1rem;">
+                        <a href="#" class="social-mini-btn"><i class="fab fa-instagram"></i></a>
+                        <a href="#" class="social-mini-btn"><i class="fab fa-discord"></i></a>
+                        <a href="#" class="social-mini-btn"><i class="fab fa-whatsapp"></i></a>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <div class="footer-content">
+            <p>&copy; 2026 Barafrns. Made with ngantuk.</p>
+        </div>
+    </footer>
+
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+    <script src="./script.js"></script>
+</body>
+</html>

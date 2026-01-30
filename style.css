@@ -1,1 +1,300 @@
+/* =========================================
+   1. VARIABLES & THEMES
+   ========================================= */
+:root {
+    --font-main: 'Plus Jakarta Sans', sans-serif;
 
+    /* DEFAULT LIGHT THEME */
+    --bg-color: #f8f9fa;
+    --card-bg: #ffffff;
+    --text-primary: #1a1a1a;
+    --text-secondary: #666666;
+    --accent-color: #5865f2; /* Discord Blue */
+    --accent-hover: #4752c4;
+    --border-color: #e5e7eb;
+    --shadow-sm: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+    --shadow-md: 0 10px 15px -3px rgba(0, 0, 0, 0.1);
+}
+
+/* DARK THEME */
+[data-theme="dark"] {
+    --bg-color: #0a0a0c;
+    --card-bg: #16161a;
+    --text-primary: #fffffe;
+    --text-secondary: #94a1b2;
+    --accent-color: #7f5af0; /* Purple accent */
+    --accent-hover: #6246ea;
+    --border-color: #242629;
+    --shadow-sm: 0 4px 6px -1px rgba(0, 0, 0, 0.5);
+    --shadow-md: 0 10px 15px -3px rgba(0, 0, 0, 0.5);
+}
+
+/* HULK THEME (For Projects Page) */
+[data-theme="hulk"] {
+    --bg-color: #0f0518; /* Deep Purple BG */
+    --card-bg: #1a0b2e;  /* Lighter Purple Card */
+    --text-primary: #f0f0f0;
+    --text-secondary: #b0a0c0;
+    --accent-color: #39ff14; /* Neon Green */
+    --accent-hover: #32cd32;
+    --border-color: #4a2b7a;
+    --shadow-sm: 0 0 15px rgba(57, 255, 20, 0.1);
+    --shadow-md: 0 0 30px rgba(57, 255, 20, 0.15);
+}
+
+/* =========================================
+   2. RESET & BASE STYLES
+   ========================================= */
+* { margin: 0; padding: 0; box-sizing: border-box; cursor: none; /* Hide default cursor */ }
+
+html { scroll-behavior: smooth; }
+
+body {
+    background-color: var(--bg-color);
+    color: var(--text-primary);
+    font-family: var(--font-main);
+    transition: background-color 0.3s ease, color 0.3s ease;
+    overflow-x: hidden;
+}
+
+/* =========================================
+   3. CUSTOM CURSOR
+   ========================================= */
+.cursor-dot, .cursor-outline {
+    position: fixed; top: 0; left: 0;
+    transform: translate(-50%, -50%);
+    border-radius: 50%; z-index: 9999;
+    pointer-events: none;
+}
+.cursor-dot { width: 8px; height: 8px; background-color: var(--accent-color); }
+.cursor-outline {
+    width: 40px; height: 40px;
+    border: 1px solid var(--text-secondary);
+    transition: width 0.2s, height 0.2s, background-color 0.2s;
+}
+
+/* =========================================
+   4. NAVBAR
+   ========================================= */
+nav {
+    position: fixed; top: 0; width: 100%; z-index: 100;
+    backdrop-filter: blur(12px);
+    background: rgba(var(--card-bg), 0.8); /* Fallback */
+    border-bottom: 1px solid var(--border-color);
+    padding: 1rem 0;
+    transition: all 0.3s ease;
+}
+
+.nav-container {
+    max-width: 1200px; margin: 0 auto; padding: 0 2rem;
+    display: flex; justify-content: space-between; align-items: center;
+}
+
+.logo {
+    font-weight: 800; font-size: 1.5rem; text-decoration: none;
+    color: var(--text-primary); display: flex; align-items: center; gap: 0.5rem;
+}
+.logo-symbol { color: var(--accent-color); }
+
+.nav-right { display: flex; align-items: center; gap: 2rem; }
+#nav-links { list-style: none; display: flex; gap: 2rem; }
+
+.nav-link {
+    text-decoration: none; color: var(--text-secondary);
+    font-weight: 500; transition: color 0.3s;
+    font-size: 0.95rem;
+}
+.nav-link:hover, .nav-link.active { color: var(--accent-color); }
+
+#theme-toggle {
+    background: none; border: 1px solid var(--border-color);
+    color: var(--text-primary); padding: 0.5rem; border-radius: 50%;
+    cursor: none; width: 40px; height: 40px; display: grid; place-items: center;
+    transition: all 0.3s;
+}
+#theme-toggle:hover { 
+    background: var(--accent-color); 
+    color: var(--bg-color); 
+    border-color: var(--accent-color); 
+}
+
+/* =========================================
+   5. HERO SECTION (BENTO GRID)
+   ========================================= */
+.hero-section {
+    min-height: 100vh; 
+    padding: 8rem 2rem 4rem;
+    max-width: 1200px; 
+    margin: 0 auto;
+    display: flex; 
+    align-items: center;
+}
+
+.bento-grid {
+    display: grid;
+    grid-template-columns: 1.5fr 1fr 1fr;
+    grid-template-rows: 320px 220px;
+    gap: 1.5rem; 
+    width: 100%;
+}
+
+.bento-item {
+    background: var(--card-bg); 
+    border-radius: 24px;
+    padding: 2rem; 
+    border: 1px solid var(--border-color);
+    box-shadow: var(--shadow-sm); 
+    position: relative; 
+    overflow: hidden;
+    transition: transform 0.4s cubic-bezier(0.2, 0.8, 0.2, 1), border-color 0.3s;
+}
+
+.bento-item:hover {
+    transform: translateY(-5px); 
+    box-shadow: var(--shadow-md);
+    border-color: var(--accent-color);
+}
+
+/* Grid Assignments */
+.intro-card { grid-column: 1 / 2; grid-row: 1 / 3; display: flex; flex-direction: column; justify-content: space-between; }
+.photo-card { grid-column: 2 / 3; grid-row: 1 / 2; padding: 0; }
+.social-card { grid-column: 3 / 4; grid-row: 1 / 2; display: flex; flex-direction: column; justify-content: space-between; background: var(--accent-color); border: none; }
+.map-card { grid-column: 2 / 4; grid-row: 2 / 3; display: flex; align-items: center; justify-content: center; background-image: url('https://upload.wikimedia.org/wikipedia/commons/e/ec/World_map_blank_without_borders.svg'); background-size: cover; background-position: center; filter: grayscale(1) opacity(0.5); }
+[data-theme="dark"] .map-card { filter: invert(1) grayscale(1) opacity(0.3); }
+
+/* Card Contents */
+.status-badge {
+    display: inline-flex; align-items: center; gap: 0.5rem;
+    background: rgba(var(--accent-color), 0.1); color: var(--accent-color);
+    padding: 0.5rem 1rem; border-radius: 20px; 
+    font-size: 0.85rem; font-weight: 600;
+    width: fit-content; margin-bottom: 1rem; 
+    border: 1px solid rgba(var(--accent-color), 0.2);
+}
+.pulse-dot { width: 8px; height: 8px; background: var(--accent-color); border-radius: 50%; animation: pulse 2s infinite; }
+@keyframes pulse { 0% { box-shadow: 0 0 0 0 rgba(var(--accent-color), 0.7); } 70% { box-shadow: 0 0 0 10px rgba(var(--accent-color), 0); } 100% { box-shadow: 0 0 0 0 rgba(var(--accent-color), 0); } }
+
+.intro-card h1 { font-size: clamp(2.5rem, 4vw, 3.5rem); line-height: 1.1; margin-bottom: 1rem; font-weight: 800; }
+.intro-card p { color: var(--text-secondary); font-size: 1.1rem; line-height: 1.6; }
+
+.profile-img { width: 100%; height: 100%; object-fit: cover; transition: 0.5s; }
+.photo-card:hover .profile-img { transform: scale(1.1); }
+.overlay-info { position: absolute; bottom: 0; left: 0; width: 100%; padding: 1.5rem; background: linear-gradient(to top, rgba(0,0,0,0.9), transparent); color: #fff; }
+
+.social-links { display: flex; gap: 1rem; }
+.social-btn { font-size: 2rem; color: var(--bg-color) !important; opacity: 0.8; transition: 0.3s; }
+.social-btn:hover { opacity: 1; transform: scale(1.1); }
+.stat-box { text-align: right; color: var(--bg-color) !important; }
+.stat-box .number { display: block; font-size: 3.5rem; font-weight: 800; line-height: 1; }
+
+.map-content { background: var(--card-bg); padding: 1rem 2rem; border-radius: 50px; display: flex; align-items: center; gap: 1rem; box-shadow: var(--shadow-md); border: 1px solid var(--border-color); font-weight: 600; }
+
+/* =========================================
+   6. BIODATA SECTION (FIXED & PATENT)
+   ========================================= */
+.section { max-width: 1200px; margin: 0 auto; padding: 4rem 2rem 6rem; }
+.section-title { font-size: 2.5rem; margin-bottom: 3rem; color: var(--text-primary); position: relative; display: inline-block; }
+.section-title::after { content: ''; position: absolute; bottom: -5px; left: 0; width: 50%; height: 4px; background: var(--accent-color); border-radius: 2px; }
+
+.biodata-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 1.5rem;
+    width: 100%;
+}
+
+.bio-item {
+    background: var(--card-bg);
+    padding: 2.5rem 2rem;
+    border-radius: 24px;
+    border: 1px solid var(--border-color);
+    transition: all 0.3s ease;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    position: relative;
+    overflow: hidden;
+}
+
+.bio-item:hover {
+    border-color: var(--accent-color);
+    transform: translateY(-5px);
+    box-shadow: var(--shadow-md);
+}
+
+.bio-icon { font-size: 2rem; color: var(--accent-color); margin-bottom: 1rem; }
+.bio-label { color: var(--text-secondary); font-size: 0.85rem; text-transform: uppercase; letter-spacing: 2px; margin-bottom: 0.5rem; font-weight: 700; }
+.bio-value { font-size: 1.5rem; font-weight: 800; color: var(--text-primary); }
+
+/* Timeline Fix */
+.education-timeline {
+    border-left: 2px solid var(--border-color);
+    padding-left: 2rem;
+    margin-top: 1.5rem;
+    margin-left: 0.5rem;
+}
+
+.edu-item { position: relative; margin-bottom: 2rem; }
+.edu-item:last-child { margin-bottom: 0; }
+.edu-item::before {
+    content: ''; position: absolute; left: -2.65rem; top: 0.3rem;
+    width: 14px; height: 14px;
+    background: var(--accent-color);
+    border-radius: 50%;
+    outline: 5px solid var(--card-bg);
+}
+
+.edu-year { color: var(--accent-color); font-weight: 700; font-size: 0.9rem; margin-bottom: 0.2rem; }
+.edu-degree { font-size: 1.1rem; font-weight: 700; color: var(--text-primary); margin-bottom: 0.2rem; }
+.edu-school { color: var(--text-secondary); font-size: 0.95rem; }
+
+.social-mini-btn {
+    width: 40px; height: 40px;
+    border-radius: 50%;
+    border: 1px solid var(--border-color);
+    display: flex; align-items: center; justify-content: center;
+    color: var(--text-secondary);
+    transition: 0.3s;
+}
+.social-mini-btn:hover { background: var(--accent-color); color: var(--bg-color); border-color: var(--accent-color); }
+
+/* =========================================
+   7. PROJECTS PAGE STYLES (CODE GRID)
+   ========================================= */
+.code-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(320px, 1fr)); gap: 2rem; width: 100%; }
+.code-card {
+    background: var(--card-bg); border-radius: 20px; border: 1px solid var(--border-color);
+    overflow: hidden; transition: all 0.4s ease; display: flex; flex-direction: column;
+}
+.code-card:hover { transform: translateY(-10px); border-color: var(--accent-color); box-shadow: var(--shadow-md); }
+.code-header { 
+    padding: 1.5rem; 
+    background: rgba(var(--accent-color), 0.05); 
+    display: flex; justify-content: space-between; align-items: center; 
+    border-bottom: 1px solid var(--border-color);
+}
+.code-lang { font-family: monospace; color: var(--accent-color); font-weight: bold; font-size: 1.2rem; letter-spacing: 1px; }
+.code-body { padding: 1.5rem; flex-grow: 1; }
+.code-body h3 { font-size: 1.4rem; margin-bottom: 0.5rem; color: var(--text-primary); }
+.code-body p { color: var(--text-secondary); font-size: 1rem; line-height: 1.6; }
+.code-footer { padding: 1rem 1.5rem; border-top: 1px solid var(--border-color); display: flex; justify-content: space-between; align-items: center; background: rgba(0,0,0,0.1); }
+.btn-code {
+    padding: 0.6rem 1.2rem; background: transparent; border: 1px solid var(--accent-color);
+    color: var(--accent-color); border-radius: 8px; text-decoration: none; font-weight: 600;
+    transition: 0.3s; font-size: 0.9rem;
+}
+.btn-code:hover { background: var(--accent-color); color: #000; box-shadow: 0 0 15px var(--accent-color); }
+
+/* =========================================
+   8. FOOTER & RESPONSIVE
+   ========================================= */
+footer { padding: 3rem 0; text-align: center; border-top: 1px solid var(--border-color); margin-top: auto; color: var(--text-secondary); }
+
+@media (max-width: 900px) {
+    .bento-grid { grid-template-columns: 1fr; grid-template-rows: auto; gap: 1rem; }
+    .intro-card, .photo-card, .social-card, .map-card { grid-column: 1 / -1; grid-row: auto; }
+    .hero-section { padding: 6rem 1.5rem 3rem; }
+    .nav-right { display: none; } /* Hide nav on mobile for simplicity, or add hamburger back if needed */
+    .biodata-grid { grid-template-columns: 1fr; }
+    .bio-item[style*="span 2"] { grid-column: auto !important; }
+}
